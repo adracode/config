@@ -1,0 +1,16 @@
+alias powershell="/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe"
+
+function note(){
+    powershell "start \"D:\Programmes\Notepad++\notepad++.exe\" $(wslpath -w $(readlink -f $1))"
+}
+
+win(){
+  if [[ $# == 0 ]]; then
+    dir=$(pwd)
+  else
+    dir=$@
+  fi
+  cd "$dir"
+  explorer.exe .
+  cd - > /dev/null
+}
